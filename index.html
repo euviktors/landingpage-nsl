@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSL - Negócio Sólido e Lucrativo | Sidnei Martins</title>
+    <meta name="description"
+        content="Domine os 5 pilares básicos que vão fazer sua empresa lucrar desde o início. O método prático de Sidnei Martins para empresários que querem lucro real.">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Montserrat + Inter -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* ==============================
+           ROOT & BASE
+        ============================== */
+        :root {
+            --bg-dark: #0a0e14;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --bg-card-hover: rgba(0, 255, 157, 0.06);
+            --accent-green: #00ff9d;
+            --accent-blue: #1a6dff;
+            --accent-cyan: #00d4ff;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-green: rgba(0, 255, 157, 0.4);
+            --text-light: #ffffff;
+            --text-muted: #8892a4;
+            --glow-green: 0 0 30px rgba(0, 255, 157, 0.35);
+            --glow-blue: 0 0 30px rgba(26, 109, 255, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Radial background blobs */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -200px;
+            right: -200px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(26, 109, 255, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 157, 0.07) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        section,
+        nav,
+        footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        /* ==============================
+           ANIMATIONS
+        ============================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-18px);
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 45px rgba(0, 255, 157, 0.7);
+            }
+        }
+
+        @keyframes border-spin {
+            to {
+                --angle: 360deg;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.15s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.45s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.6s;
+        }
+
+        /* ==============================
+           NAVBAR FIXA E FUTURISTA
+        ============================== */
+        .navbar {
+            height: 124px !important;
+            background: rgba(10, 14, 20, 0.8) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* CONTAINER DE LOGO INDEPENDENTE */
+        .navbar .container {
+            position: relative;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* LOGO EM 270PX SEM DESALINHAR */
+        .navbar img {
+            position: absolute;
+            width: 270px !important;
+            height: auto !important;
+            max-height: none !important;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: contain;
+            z-index: 1000;
+        }
+
+        /* ==============================
+           HERO SECTION
+        ============================== */
+        .hero-section {
+            padding: 90px 0 80px;
+            background: linear-gradient(160deg, rgba(26, 109, 255, 0.08) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 50%, rgba(0, 255, 157, 0.06) 0%, transparent 60%);
+        }
+
+        .hero-headline {
+            font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 22px;
+        }
+
+        .hero-headline .highlight {
+            color: var(--accent-green);
+            position: relative;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            margin-bottom: 36px;
+            max-width: 490px;
+        }
+
+        .hero-img-wrap {
+            position: relative;
+        }
+
+        .hero-img-wrap img {
+            width: 100%;
+            max-width: 500px;
+            animation: float 5s ease-in-out infinite;
+            filter: drop-shadow(0 30px 60px rgba(0, 255, 157, 0.15));
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 255, 157, 0.1);
+            border: 1px solid var(--border-green);
+            border-radius: 50px;
+            padding: 7px 18px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent-green);
+            margin-bottom: 22px;
+            letter-spacing: 0.04em;
+        }
+
+        /* ==============================
+           CTA BUTTON
+        ============================== */
+        .btn-cta {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent-blue), #063aff);
+            border: none;
+            padding: 18px 38px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: white;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            box-shadow: var(--glow-blue);
+            transition: all 0.35s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 0 40px rgba(0, 255, 157, 0.5), 0 0 80px rgba(0, 255, 157, 0.15);
+            background: linear-gradient(90deg, #00cc7d, #00ff9d);
+            color: #0a0e14;
+        }
+
+        .btn-cta-green {
+            background: linear-gradient(90deg, #00cc7d, #00ff9d);
+            color: #0a0e14;
+            box-shadow: var(--glow-green);
+        }
+
+        .btn-cta-green:hover {
+            background: linear-gradient(90deg, var(--accent-blue), #063aff);
+            box-shadow: var(--glow-blue);
+            color: white;
+        }
+
+        /* ==============================
+           SECTION LABELS & HEADINGS
+        ============================== */
+        .section-label {
+            display: inline-block;
+            background: rgba(0, 255, 157, 0.08);
+            border: 1px solid var(--border-green);
+            border-radius: 4px;
+            padding: 4px 14px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .section-heading {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ==============================
+           DOR SECTION – Problema cards
+        ============================== */
+        .dor-section {
+            padding: 90px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 32px 28px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            backdrop-filter: blur(12px);
+            transition: all 0.35s ease;
+        }
+
+        .problem-card:hover {
+            border-color: rgba(255, 77, 77, 0.5);
+            background: rgba(255, 77, 77, 0.05);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(255, 77, 77, 0.1);
+        }
+
+        .problem-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: rgba(255, 77, 77, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 77, 77, 0.2);
+        }
+
+        .problem-card p {
+            color: #c5cdd9;
+            font-size: 0.98rem;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* ==============================
+           PILARES SECTION – 5 Cards
+        ============================== */
+        .pilares-section {
+            padding: 90px 0;
+        }
+
+        .pilar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 36px 28px;
+            height: 100%;
+            backdrop-filter: blur(12px);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pilar-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(0, 255, 157, 0.04) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+
+        .pilar-card:hover::before {
+            opacity: 1;
+        }
+
+        .pilar-card:hover {
+            border-color: var(--border-green);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 255, 157, 0.1);
+        }
+
+        .pilar-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(0, 255, 157, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--accent-green);
+            border: 1px solid var(--border-green);
+            margin-bottom: 20px;
+            transition: all 0.35s;
+        }
+
+        .pilar-card:hover .pilar-icon {
+            background: var(--accent-green);
+            color: #0a0e14;
+            box-shadow: var(--glow-green);
+        }
+
+        .pilar-card h4 {
+            font-size: 1.08rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .pilar-card p {
+            font-size: 0.93rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        .pilar-number {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        /* ==============================
+           AUTORIDADE SECTION
+        ============================== */
+        .autoridade-section {
+            padding: 90px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .autoridade-img-wrap {
+            position: relative;
+        }
+
+        .autoridade-img-wrap img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Tech border frame */
+        .autoridade-img-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, var(--accent-green), transparent, var(--accent-blue));
+            z-index: -1;
+        }
+
+        .autoridade-img-wrap::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(0, 255, 157, 0.15);
+            border-radius: 24px;
+            z-index: -2;
+        }
+
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 14px 20px;
+            margin: 8px 8px 8px 0;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s;
+        }
+
+        .stat-badge:hover {
+            border-color: var(--border-green);
+        }
+
+        .stat-badge .stat-num {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--accent-green);
+        }
+
+        .stat-badge .stat-label {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        .stat-badge i {
+            color: var(--accent-green);
+            font-size: 1.1rem;
+        }
+
+        /* ==============================
+           BONUS SECTION
+        ============================== */
+        .bonus-section {
+            padding: 90px 0;
+        }
+
+        .bonus-card {
+            background: linear-gradient(135deg, rgba(0, 255, 157, 0.07) 0%, rgba(26, 109, 255, 0.05) 100%);
+            border: 1px solid var(--border-green);
+            border-radius: 24px;
+            padding: 60px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bonus-card::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 157, 0.1) 0%, transparent 70%);
+        }
+
+        .bonus-icon-wrap {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            margin: 0 auto 28px;
+            box-shadow: 0 0 40px rgba(37, 211, 102, 0.4);
+            animation: pulse-glow 2.5s ease-in-out infinite;
+        }
+
+        .bonus-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+
+        .bonus-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+
+        /* ==============================
+           PRICING SECTION
+        ============================== */
+        .pricing-section {
+            padding: 90px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-box {
+            background: linear-gradient(145deg, #111827, #0d1117);
+            border: 2px solid var(--border-green);
+            border-radius: 28px;
+            padding: 60px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 80px rgba(0, 255, 157, 0.08), inset 0 0 80px rgba(26, 109, 255, 0.03);
+        }
+
+        .pricing-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-green), var(--accent-blue), transparent);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff4d4d, #ff2222);
+            border-radius: 50px;
+            padding: 6px 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .price-old {
+            text-decoration: line-through;
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .price-install {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin: 4px 0;
+        }
+
+        .price-main {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 900;
+            color: var(--accent-green);
+            line-height: 1;
+            margin: 8px 0;
+            text-shadow: 0 0 30px rgba(0, 255, 157, 0.4);
+        }
+
+        .price-or {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 10px 0 30px;
+        }
+
+        .price-or span {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .pricing-includes {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 40px;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .pricing-includes li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #c5cdd9;
+            font-size: 0.97rem;
+            margin-bottom: 12px;
+        }
+
+        .pricing-includes li i {
+            color: var(--accent-green);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .pricing-secure {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.83rem;
+            color: var(--text-muted);
+            margin-top: 18px;
+        }
+
+        .pricing-secure i {
+            color: var(--accent-green);
+        }
+
+        /* ==============================
+           FOOTER
+        ============================== */
+        footer {
+            background: #05070a;
+            padding: 50px 0 30px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .footer-logo {
+            height: 38px;
+            filter: grayscale(1) brightness(1.8);
+            opacity: 0.75;
+            transition: all 0.3s;
+        }
+
+        .footer-logo:hover {
+            filter: none;
+            opacity: 1;
+        }
+
+        .footer-divider {
+            border-color: var(--border-subtle);
+            margin: 28px 0;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+            margin: 0 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-green);
+        }
+
+        /* ==============================
+           SEPARATOR
+        ============================== */
+        .section-sep {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+            border-radius: 3px;
+            margin: 14px auto 40px;
+        }
+
+        .section-sep.left {
+            margin-left: 0;
+        }
+
+        /* ==============================
+           RESPONSIVE — TABLET (≤992px)
+        ============================== */
+        @media (max-width: 992px) {
+            .hero-section {
+                padding: 70px 0 60px;
+                text-align: center;
+            }
+
+            .hero-badge {
+                display: inline-flex;
+            }
+
+            .hero-sub {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-img-wrap {
+                margin-top: 44px;
+                text-align: center;
+            }
+
+            .hero-img-wrap img {
+                max-width: 380px;
+            }
+
+            .autoridade-img-wrap::after {
+                display: none;
+            }
+        }
+
+        /* ==============================
+           RESPONSIVE — MOBILE (≤767px)
+        ============================== */
+        @media (max-width: 767px) {
+
+            /* --- Margem lateral: conteúdo NUNCA toca as bordas --- */
+            .container {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            /* --- Base --- */
+            body {
+                font-size: 15px;
+            }
+
+            /* --- Navbar --- */
+            .navbar {
+                padding: 0 !important;
+            }
+
+            .navbar img {
+                width: 200px !important;
+            }
+
+            /* --- Hero --- */
+            .hero-section {
+                padding: 50px 0 40px;
+                text-align: center;
+            }
+
+            .hero-headline {
+                font-size: 1.85rem;
+                line-height: 1.25;
+                margin-bottom: 16px;
+            }
+
+            .hero-sub {
+                font-size: 1rem;
+                margin-bottom: 28px;
+                max-width: 100%;
+            }
+
+            .hero-img-wrap {
+                margin-top: 36px;
+                text-align: center;
+            }
+
+            .hero-img-wrap img {
+                max-width: 270px;
+            }
+
+            .btn-cta {
+                width: 100%;
+                text-align: center;
+                padding: 16px 20px;
+                font-size: 0.82rem;
+                letter-spacing: 0.02em;
+            }
+
+            /* --- Section headings --- */
+            .section-heading {
+                font-size: 1.65rem;
+                line-height: 1.25;
+            }
+
+            .section-sub {
+                font-size: 0.93rem;
+            }
+
+            .dor-section,
+            .pilares-section,
+            .autoridade-section,
+            .bonus-section,
+            .pricing-section {
+                padding: 60px 0;
+            }
+
+            /* --- Problem / Pilar cards --- */
+            .problem-card,
+            .pilar-card {
+                padding: 26px 22px;
+            }
+
+            .pilar-number {
+                font-size: 2.8rem;
+            }
+
+            /* --- Autoridade --- */
+            .autoridade-img-wrap {
+                margin-bottom: 36px;
+            }
+
+            .autoridade-img-wrap::after {
+                display: none;
+            }
+
+            .autoridade-img-wrap img {
+                border-radius: 18px;
+            }
+
+            /* --- Stat badges --- */
+            .stat-badge {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            /* --- Bonus --- */
+            .bonus-card {
+                padding: 44px 22px;
+            }
+
+            .bonus-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .bonus-card p {
+                font-size: 0.93rem;
+            }
+
+            /* --- Pricing --- */
+            .pricing-box {
+                padding: 40px 20px;
+            }
+
+            .price-main {
+                font-size: 3rem;
+            }
+
+            .pricing-includes {
+                width: 100%;
+                text-align: left;
+            }
+
+            .pricing-includes li {
+                font-size: 0.88rem;
+                gap: 10px;
+            }
+
+            .pricing-secure {
+                flex-direction: column;
+                gap: 6px;
+                text-align: center;
+            }
+
+            /* --- Footer --- */
+            footer {
+                padding: 40px 0 24px;
+            }
+
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .footer-links a {
+                margin: 0;
+            }
+
+            .d-flex.gap-5 {
+                gap: 2rem !important;
+            }
+        }
+
+        /* ==============================
+           RESPONSIVE — SMALL MOBILE (≤400px)
+        ============================== */
+        @media (max-width: 400px) {
+            .container {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
+            .hero-headline {
+                font-size: 1.5rem;
+            }
+
+            .hero-img-wrap img {
+                max-width: 210px;
+            }
+
+            .pricing-box {
+                padding: 28px 14px;
+            }
+
+            .bonus-card {
+                padding: 32px 14px;
+            }
+
+            .section-heading {
+                font-size: 1.4rem;
+            }
+
+            .pilar-card,
+            .problem-card {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =============================
+         NAVBAR
+    ============================== -->
+    <nav class="navbar">
+        <div class="container">
+            <img src="https://www.sidneimartins.com.br/wp-content/uploads/2024/10/Mentoria.png" alt="Logo NSL">
+        </div>
+    </nav>
+
+    <!-- =============================
+         SEÇÃO 1: HERO
+    ============================== -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="hero-badge fade-in">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                        Método exclusivo para empresários
+                    </div>
+                    <h1 class="hero-headline fade-in delay-1">
+                        Empreendedor, Domine os
+                        <span class="highlight">5 pilares básicos</span>
+                        que vão fazer sua empresa lucrar desde o início.
+                    </h1>
+                    <p class="hero-sub fade-in delay-2">
+                        O método prático que Sidnei Martins desenvolveu para empresários que cansaram de
+                        <strong style="color:#fff;">"marketing de esperança"</strong> e buscam o lucro real.
+                    </p>
+                    <a href="#oferta" class="btn-cta fade-in delay-3">
+                        <i class="fa-solid fa-rocket me-2"></i>
+                        Quero Construir um Negócio Sólido
+                    </a>
+                </div>
+                <div class="col-lg-6 fade-in delay-2">
+                    <div class="hero-img-wrap text-center">
+                        <img src="https://www.sidneimartins.com.br/wp-content/uploads/2024/10/Mentoria-1.png"
+                            alt="Sidnei Martins – Mentor NSL" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================
+         SEÇÃO 2: A DOR
+    ============================== -->
+    <section class="dor-section">
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <span class="section-label"><i class="fa-solid fa-triangle-exclamation me-1"></i> Alerta</span>
+                <h2 class="section-heading">Por que 80% das empresas<br>quebram nos primeiros anos?</h2>
+                <div class="section-sep"></div>
+                <p class="section-sub">
+                    A maioria dos empresários trabalha muito, mas no final do mês o caixa não bate.
+                    Reconhece alguma dessas situações?
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3 fade-in">
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <h5 style="font-size:1rem; font-weight:700; margin:0;">Lucro real ou apenas "troca de dinheiro"?
+                        </h5>
+                        <p>Você fatura, mas no mês seguinte está no mesmo lugar. Sem margens claras, sem crescimento.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in delay-1">
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h5 style="font-size:1rem; font-weight:700; margin:0;">Contratação na sorte ou com segurança?
+                        </h5>
+                        <p>Contratar a pessoa errada resulta em processos trabalhistas e drena seu caixa
+                            silenciosamente.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in delay-2">
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h5 style="font-size:1rem; font-weight:700; margin:0;">Marketing que atrai ou que gasta caixa?
+                        </h5>
+                        <p>Investir sem estratégia de resposta direta é jogar dinheiro fora sem gerar cliente real.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 fade-in delay-3">
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <i class="fa-solid fa-gavel"></i>
+                        </div>
+                        <h5 style="font-size:1rem; font-weight:700; margin:0;">Patrimônio protegido ou riscos jurídicos
+                            ocultos?</h5>
+                        <p>Misturar PF e PJ pode colocar seu patrimônio pessoal em risco em qualquer processo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================
+         SEÇÃO 3: OS 5 PILARES
+    ============================== -->
+    <section class="pilares-section">
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <span class="section-label"><i class="fa-solid fa-layer-group me-1"></i> A Solução</span>
+                <h2 class="section-heading">O "Feijão com Arroz"<br>que gera Lucro Real</h2>
+                <div class="section-sep"></div>
+                <p class="section-sub">
+                    O Método NSL não é teoria. São os 5 pilares fundamentais que todo negócio precisa dominar
+                    para prosperar de verdade.
+                </p>
+            </div>
+            <div class="row g-4">
+                <!-- Pilar 1 -->
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="pilar-card">
+                        <div class="pilar-number">01</div>
+                        <div class="pilar-icon">
+                            <i class="fa-solid fa-tags"></i>
+                        </div>
+                        <h4>Precificação Inteligente</h4>
+                        <p>Calcule margens reais, identifique gargalos e pare definitivamente de pagar para trabalhar.
+                            Seu preço precisa gerar lucro, não apenas cobrir custo.</p>
+                    </div>
+                </div>
+                <!-- Pilar 2 -->
+                <div class="col-md-6 col-lg-4 fade-in delay-1">
+                    <div class="pilar-card">
+                        <div class="pilar-number">02</div>
+                        <div class="pilar-icon">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h4>Marketing de Resposta Direta</h4>
+                        <p>Atraia o cliente certo sem desperdício. O básico do marketing que funciona: mensagem certa,
+                            para a pessoa certa, no momento certo.</p>
+                    </div>
+                </div>
+                <!-- Pilar 3 -->
+                <div class="col-md-6 col-lg-4 fade-in delay-2">
+                    <div class="pilar-card">
+                        <div class="pilar-number">03</div>
+                        <div class="pilar-icon">
+                            <i class="fa-solid fa-people-roof"></i>
+                        </div>
+                        <h4>Contratação Eficiente</h4>
+                        <p>Monte um time de alta performance sem passivo trabalhista. Saiba quando, como e quem
+                            contratar para o seu negócio crescer com segurança.</p>
+                    </div>
+                </div>
+                <!-- Pilar 4 -->
+                <div class="col-md-6 col-lg-4 fade-in delay-1">
+                    <div class="pilar-card">
+                        <div class="pilar-number">04</div>
+                        <div class="pilar-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h4>Contabilidade Estratégica</h4>
+                        <p>Domine o fluxo de caixa, entenda seus números e tome decisões baseadas em dados reais — não
+                            em "achismo" ou intuição.</p>
+                    </div>
+                </div>
+                <!-- Pilar 5 -->
+                <div class="col-md-6 col-lg-4 fade-in delay-2">
+                    <div class="pilar-card">
+                        <div class="pilar-number">05</div>
+                        <div class="pilar-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h4>Segurança Jurídica e Patrimonial</h4>
+                        <p>Blindagem do seu CNPJ e do seu patrimônio pessoal. Estruture seu negócio de forma que nenhum
+                            risco jurídico externo te destrua.</p>
+                    </div>
+                </div>
+                <!-- CTA Card -->
+                <div class="col-md-6 col-lg-4 fade-in delay-3">
+                    <div class="pilar-card d-flex flex-column justify-content-center align-items-center text-center"
+                        style="background: linear-gradient(135deg, rgba(0,255,157,0.1), rgba(26,109,255,0.08)); border-color: var(--border-green);">
+                        <i class="fa-solid fa-crown"
+                            style="font-size:2.5rem; color: var(--accent-green); margin-bottom:16px;"></i>
+                        <h4>O método completo em um único programa</h4>
+                        <p style="margin-bottom:28px;">Sem enrolação. Sem "economês". Somente o essencial que faz sua
+                            empresa lucrar.</p>
+                        <a href="#oferta" class="btn-cta btn-cta-green" style="padding:14px 28px; font-size:0.85rem;">
+                            Quero Acesso <i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================
+         SEÇÃO 4: AUTORIDADE
+    ============================== -->
+    <section class="autoridade-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 fade-in">
+                    <div class="autoridade-img-wrap">
+                        <img src="https://www.sidneimartins.com.br/wp-content/uploads/2024/10/Quem-e.png"
+                            alt="Sidnei Martins – Quem é">
+                    </div>
+                </div>
+                <div class="col-lg-7 fade-in delay-1">
+                    <span class="section-label"><i class="fa-solid fa-user-tie me-1"></i> O Mentor</span>
+                    <h2 class="section-heading" style="text-align:left;">Quem vai te guiar?</h2>
+                    <div class="section-sep left"></div>
+                    <p style="color:#c5cdd9; line-height:1.8; margin-bottom:20px;">
+                        <strong style="color:#fff;">Sidnei Martins</strong> é fundador do <strong
+                            style="color: var(--accent-cyan);">CAE Club</strong>,
+                        contador, empresário e mentor de negócios há mais de uma década. Ele não acredita em atalhos
+                        ou "fórmulas mágicas". Acredita que o sucesso sustentável depende de uma fundação inabalável
+                        — e é exatamente isso que o NSL entrega.
+                    </p>
+                    <p style="color: var(--text-muted); line-height:1.8; margin-bottom:32px;">
+                        Sua missão é traduzir a complexidade do mundo empresarial em linguagem simples e aplicável,
+                        para que <em>qualquer empreendedor</em> consiga dominar as bases do negócio lucrativo —
+                        sem "economês" e sem enrolação.
+                    </p>
+                    <div class="d-flex flex-wrap">
+                        <div class="stat-badge">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <div>
+                                <div class="stat-num">+10</div>
+                                <div class="stat-label">Anos de<br>Experiência</div>
+                            </div>
+                        </div>
+                        <div class="stat-badge">
+                            <i class="fa-solid fa-building"></i>
+                            <div>
+                                <div class="stat-num">CAE</div>
+                                <div class="stat-label">Club<br>Fundador</div>
+                            </div>
+                        </div>
+                        <div class="stat-badge">
+                            <i class="fa-solid fa-users"></i>
+                            <div>
+                                <div class="stat-num">+1k</div>
+                                <div class="stat-label">Empresários<br>Mentorados</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================
+         SEÇÃO 5: BÔNUS
+    ============================== -->
+    <section class="bonus-section">
+        <div class="container">
+            <div class="bonus-card fade-in">
+                <div class="bonus-icon-wrap">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <span class="section-label mb-3 d-inline-block">
+                    <i class="fa-solid fa-gift me-1"></i> Bônus Exclusivo
+                </span>
+                <h3>Você não estará sozinho nessa jornada.</h3>
+                <p>
+                    Ao entrar no NSL, você terá acesso ao
+                    <strong style="color:#fff;">Grupo de Acompanhamento VIP no WhatsApp</strong>,
+                    com especialistas de prontidão para tirar suas dúvidas, revisar seus números
+                    e te manter no caminho certo. Suporte real, de pessoas reais.
+                </p>
+                <div class="mt-4 d-flex align-items-center justify-content-center gap-3 flex-wrap"
+                    style="font-size:0.9rem; color: var(--text-muted);">
+                    <span><i class="fa-solid fa-circle-check me-1" style="color: var(--accent-green);"></i>
+                        Especialistas disponíveis</span>
+                    <span><i class="fa-solid fa-circle-check me-1" style="color: var(--accent-green);"></i> Suporte em
+                        tempo real</span>
+                    <span><i class="fa-solid fa-circle-check me-1" style="color: var(--accent-green);"></i> Comunidade
+                        ativa</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================
+         SEÇÃO 6: OFERTA
+    ============================== -->
+    <section class="pricing-section" id="oferta">
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <span class="section-label"><i class="fa-solid fa-gem me-1"></i> Investimento</span>
+                <h2 class="section-heading">O alicerce da sua empresa<br>por um investimento simbólico</h2>
+                <div class="section-sep"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-9 fade-in delay-1">
+                    <div class="pricing-box">
+                        <div class="pricing-badge">
+                            <i class="fa-solid fa-fire me-1"></i> Oferta por tempo limitado
+                        </div>
+                        <p class="price-install">Acesso completo ao Método NSL por apenas</p>
+                        <div class="price-old">De R$ 1.497,00</div>
+                        <p class="price-install mt-2">12x de</p>
+                        <div class="price-main">R$ 19,70</div>
+                        <p class="price-or">ou <span>R$ 197,00</span> à vista</p>
+
+                        <ul class="pricing-includes">
+                            <li><i class="fa-solid fa-check-circle"></i> Acesso aos 5 Pilares do Método NSL</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Módulo de Precificação com Margens Reais</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Módulo de Marketing de Resposta Direta</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Módulo de Contratação Eficiente</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Módulo de Contabilidade e Fluxo de Caixa</li>
+                            <li><i class="fa-solid fa-check-circle"></i> Módulo de Blindagem Jurídica e Patrimonial</li>
+                            <li><i class="fa-solid fa-check-circle"></i> <strong style="color:#fff;">BÔNUS:</strong>
+                                Grupo VIP de Acompanhamento no WhatsApp</li>
+                        </ul>
+
+                        <a href="#" class="btn-cta btn-cta-green" style="font-size:1rem; padding:20px 48px;">
+                            <i class="fa-solid fa-lock-open me-2"></i>
+                            SIM! QUERO ACESSO IMEDIATO
+                        </a>
+
+                        <div class="pricing-secure mt-3">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            Compra 100% segura &nbsp;·&nbsp;
+                            <i class="fa-solid fa-lock"></i>
+                            Pagamento criptografado
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================
+         FOOTER
+    ============================== -->
+    <footer>
+        <div class="container text-center">
+            <div class="d-flex justify-content-center align-items-center gap-5 mb-4 flex-wrap">
+                <img src="https://caeclub.com.br/wp-content/uploads/2024/12/Logotipo-V1-H-1.png" alt="CAE Club"
+                    class="footer-logo">
+                <img src="https://www.sidneimartins.com.br/wp-content/uploads/2025/09/logo-do-site.jpg"
+                    alt="Sidnei Martins" class="footer-logo">
+            </div>
+            <hr class="footer-divider">
+            <div class="footer-links mb-3">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Contato</a>
+            </div>
+            <p class="text-muted small" style="font-size:0.8rem;">
+                &copy; 2026 NSL – Negócio Sólido e Lucrativo | Sidnei Martins. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Fade-in on scroll (IntersectionObserver) -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(36px)';
+            el.style.transition = 'opacity 0.75s ease, transform 0.75s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
